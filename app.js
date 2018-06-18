@@ -6,7 +6,7 @@ document.getElementById('loan-form').addEventListener('submit', function(e){
   document.getElementById('loading').style.display = 'block';
 
   setTimeout(calculateResults,2000);
-
+ 
   e.preventDefault();
 });
 
@@ -42,6 +42,8 @@ function calculateResults() {
 
     document.getElementById('loading').style.display = 'none';
 
+    setTimeout(clearInput, 4000);
+
   } else { 
     showError('Please check inputs')
   }
@@ -64,8 +66,16 @@ function showError(error){
   card.insertBefore(errorDiv, heading);
 
   setTimeout(clearError, 2000);
+  setTimeout(clearInput, 2000);
 }
 
 function clearError(){
   document.querySelector('.alert').remove();
+}
+  
+function clearInput(){
+  amount.value = '';
+  interest.value = '';
+  years.value ='';
+  document.getElementById('results').style.display = 'none';
 }
